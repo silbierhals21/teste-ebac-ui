@@ -1,0 +1,41 @@
+[
+    {
+        "nome": "Ana",
+        "sobrenome": "Conte",
+        "empresa": "EBAC",
+        "endereco": "Av. Rio Branco",
+        "numero": "277",
+        "pais": "Brasil",
+        "cidade": "Florianopolis",
+        "estado": "Santa Catarina",
+        "cep": "88117405",
+        "telefone": "489999988888",
+        "email": "teste@test.com"
+    },
+    {
+        "nome": "Aline",
+        "sobrenome": "Souza",
+        "empresa": "SD Ltd",
+        "endereco": "Av. Rio Branco",
+        "numero": "300",
+        "pais": "Brasil",
+        "cidade": "Balneario Camboriu",
+        "estado": "Santa Catarina",
+        "cep": "88117405",
+        "telefone": "489999988855",
+        "email": "sdteste@test.com"
+    },
+    {
+        "nome": "Oliver",
+        "sobrenome": "Carter",
+        "empresa": "Disney",
+        "endereco": "Av. Rio Branco",
+        "numero": "200",
+        "pais": "Brasil",
+        "cidade": "Sao Vicente",
+        "estado": "Sao Paulo",
+        "cep": "88117405",
+        "telefone": "073999988888",
+        "email": "disney@test.com"
+    }
+]

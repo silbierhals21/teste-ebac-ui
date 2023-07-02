@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "ac066cfc-7350-4440-b01a-ab29d3f999e9",
+		"name": "Exercicios - Modulo 13",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar Usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Listar usuarios cadastrados\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Silvana Bierhals\");\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"User ID\", function () {\r",
+							"    pm.response.to.have.body({\r",
+							"    \"quantidade\": 4,\r",
+							"    \"usuarios\": [\r",
+							"         {\r",
+							"            \"nome\": \"Silvana Bierhals\",\r",
+							"            \"email\": \"silbierhals@gmail.com\",\r",
+							"            \"password\": \"teste\",\r",
+							"            \"administrador\": \"true\",\r",
+							"            \"_id\": \"FI9f0DK9Czrozy6T\"\r",
+							"        },\r",
+							"        {\r",
+							"            \"nome\": \"Carlos da Silva\",\r",
+							"            \"email\": \"carlos@qa.com.br\",\r",
+							"            \"password\": \"teste\",\r",
+							"            \"administrador\": \"false\",\r",
+							"            \"_id\": \"JYdrS2mNlrxdcfHZ\"\r",
+							"        },\r",
+							"        {\r",
+							"            \"nome\": \"Luiz de Souza\",\r",
+							"            \"email\": \"luiz@qa.com.br\",\r",
+							"            \"password\": \"teste\",\r",
+							"            \"administrador\": \"false\",\r",
+							"            \"_id\": \"QIL5JZ1lHvFdFvnC\"\r",
+							"        },\r",
+							"        {\r",
+							"            \"nome\": \"Jose da Silva\",\r",
+							"            \"email\": \"jose@qa.com.br\",\r",
+							"            \"password\": \"teste\",\r",
+							"            \"administrador\": \"false\",\r",
+							"            \"_id\": \"bCmtmv0Gu3fNNXAz\"\r",
+							"        }\r",
+							"    ]\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Dev}}/usuarios",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuarios - Cenarios Negativos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Validar Usuario\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Laura Rodrigues\");\r",
+							"});\r",
+							"pm.test(\"Validar string\", function () {\r",
+							"    pm.response.to.have.body(\"laura@test\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{Dev}}/usuarios",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Validar mensagem de sucesso\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Luiz de Souza\",\r\n  \"email\": \"luiz@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"false\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Dev}}/usuarios",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuario - Cenarios Negativos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar mensagem de erro\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Este email já está sendo usado\");\r",
+							"});\r",
+							"pm.test(\"Validar SC 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Jose da Silva\",\r\n  \"email\": \"jose@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"false\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Dev}}/usuarios",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validar alteracao no cadastro de usuario\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Jose da Silva\",\r\n  \"email\": \"JS@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"false\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Dev}}/usuarios/bCmtmv0Gu3fNNXAz",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios",
+						"bCmtmv0Gu3fNNXAz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Usuario - Cenario Negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar email ja existente\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Este email já está sendo usado\");\r",
+							"});\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Breno de Lima\",\r\n  \"email\": \"bruno@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Dev}}/usuarios/bCmtmv0Gu3fNNXAz",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios",
+						"bCmtmv0Gu3fNNXAz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validar mensagem de exclusao de produto\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{Dev}}/usuarios/QIL5JZ1lHvFdFvnC",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios",
+						"QIL5JZ1lHvFdFvnC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Usuario - Cenario Negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Validar mensagem de sucesso\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Nenhum registro excluído\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{Dev}}/usuarios/0uxuPY0cbmQhpEz1",
+					"host": [
+						"{{Dev}}"
+					],
+					"path": [
+						"usuarios",
+						"0uxuPY0cbmQhpEz1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

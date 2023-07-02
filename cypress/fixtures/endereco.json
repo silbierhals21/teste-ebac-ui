@@ -29,13 +29,13 @@
         "nome": "Oliver",
         "sobrenome": "Carter",
         "empresa": "Disney",
-        "endereco": "Av. Rio Branco",
-        "numero": "200",
+        "endereco": "The Rise",
+        "numero": "30",
         "pais": "Brasil",
-        "cidade": "Sao Vicente",
-        "estado": "Sao Paulo",
-        "cep": "88117405",
-        "telefone": "073999988888",
+        "cidade": "Curitiba",
+        "estado": "Parana",
+        "cep": "88123000",
+        "telefone": "489999988888",
         "email": "disney@test.com"
     }
 ]
